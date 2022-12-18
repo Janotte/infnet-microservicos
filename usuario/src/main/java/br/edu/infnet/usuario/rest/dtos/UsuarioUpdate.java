@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel(description = "Classe de representação do usuário de atualização.")
+@ApiModel(description = "Classe de representação do usuário de atualização da aplicação.")
 @Getter
 @Setter
 public class UsuarioUpdate {

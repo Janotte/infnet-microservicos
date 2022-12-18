@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel(description = "Classe de representação do usuário na aplicação.")
+@ApiModel(description = "Classe de representação do usuário na resposta da aplicação.")
 @Getter
 @Setter
 public class UsuarioResponse {

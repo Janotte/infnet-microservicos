@@ -6,8 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
-@EnableConfigServer
 @SpringBootApplication
+@EnableConfigServer
 public class ConfigserverApplication {
 
 	private static Logger log = LoggerFactory.getLogger(ConfigserverApplication.class);

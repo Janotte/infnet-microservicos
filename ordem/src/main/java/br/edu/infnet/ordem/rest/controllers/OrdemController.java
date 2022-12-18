@@ -19,7 +19,7 @@ import br.edu.infnet.ordem.domain.services.OrdemService;
 import br.edu.infnet.ordem.rest.dtos.request.OrdemRequest;
 import br.edu.infnet.ordem.rest.dtos.request.OrdemUpdate;
 import br.edu.infnet.ordem.rest.dtos.response.MessageResponse;
-import br.edu.infnet.ordem.rest.dtos.response.OrdemResponse;
+import br.edu.infnet.ordem.rest.dtos.response.OrdemDto;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -38,13 +38,13 @@ public class OrdemController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<OrdemResponse>> obterTodasOrdens() {
+	public ResponseEntity<List<OrdemDto>> obterTodasOrdens() {
 		log.info("Buscando as Ordens de Serviço...");
 		return new ResponseEntity<>(ordemService.obterTodas(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<OrdemResponse> obterOrdemPorId(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<OrdemDto> obterOrdemPorId(@PathVariable(value = "id") Long id) {
 		log.info("Buscando a Ordem de Serviço de id {}...", id);
 		return new ResponseEntity<>(ordemService.obterPorId(id), HttpStatus.OK);
 	}

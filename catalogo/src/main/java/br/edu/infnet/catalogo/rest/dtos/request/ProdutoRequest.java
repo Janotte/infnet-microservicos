@@ -25,7 +25,7 @@ public class ProdutoRequest {
 	@NotNull(message = "A medida é necessária.")
 	private Long medidaId;
 
-	@ApiModelProperty(notes = "Medida do produto.", example = "399.99", required = true, position = 3)
+	@ApiModelProperty(notes = "Valor do produto.", example = "399.99", required = true, position = 3)
 	@NotNull(message = "O valor é necessário.")
 	private Double valor;
 }

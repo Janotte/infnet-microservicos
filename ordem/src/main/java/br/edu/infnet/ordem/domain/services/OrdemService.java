@@ -5,13 +5,13 @@ import java.util.List;
 import br.edu.infnet.ordem.rest.dtos.request.OrdemRequest;
 import br.edu.infnet.ordem.rest.dtos.request.OrdemUpdate;
 import br.edu.infnet.ordem.rest.dtos.response.MessageResponse;
-import br.edu.infnet.ordem.rest.dtos.response.OrdemResponse;
+import br.edu.infnet.ordem.rest.dtos.response.OrdemDto;
 
 public interface OrdemService {
 
-	List<OrdemResponse> obterTodas();
+	List<OrdemDto> obterTodas();
 
-	OrdemResponse obterPorId(Long id);
+	OrdemDto obterPorId(Long id);
 
 	MessageResponse salvar(OrdemRequest ordemRequest);
 

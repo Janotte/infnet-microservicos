@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel(description = "Classe de representação de um novo usuário.")
+@ApiModel(description = "Classe de representação de criação de um novo usuário.")
 @Getter
 @Setter
 public class UsuarioRequest {

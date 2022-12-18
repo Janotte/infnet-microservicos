@@ -4,9 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+@ApiModel(description = "Classe de representação de endereço.")
 @Data
 @Embeddable
 public class EnderecoDto {

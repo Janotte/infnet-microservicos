@@ -1,7 +1,7 @@
 package br.edu.infnet.ordem.domain.services;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -15,12 +15,18 @@ import br.edu.infnet.ordem.domain.entities.Ordem;
 import br.edu.infnet.ordem.domain.entities.Situacao;
 import br.edu.infnet.ordem.domain.exceptions.EntidadeNaoEncontradaException;
 import br.edu.infnet.ordem.domain.repositories.OrdemRepository;
+import br.edu.infnet.ordem.rest.clients.PessoaClient;
 import br.edu.infnet.ordem.rest.clients.ProdutoClient;
+import br.edu.infnet.ordem.rest.clients.UsuarioClient;
 import br.edu.infnet.ordem.rest.dtos.request.OrdemRequest;
 import br.edu.infnet.ordem.rest.dtos.request.OrdemUpdate;
 import br.edu.infnet.ordem.rest.dtos.request.ProdutoRequest;
+import br.edu.infnet.ordem.rest.dtos.response.ItemProdutoResponse;
 import br.edu.infnet.ordem.rest.dtos.response.MessageResponse;
+import br.edu.infnet.ordem.rest.dtos.response.OrdemDto;
 import br.edu.infnet.ordem.rest.dtos.response.OrdemResponse;
+import br.edu.infnet.ordem.rest.dtos.response.PessoaResponse;
+import br.edu.infnet.ordem.rest.dtos.response.UsuarioResponse;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -30,7 +36,11 @@ public class OrdemServiceImpl implements OrdemService {
 	private final OrdemRepository ordemRepository;
 
 	private final OrdemMapper ordemMapper = OrdemMapper.INSTANCE;
-
+	
+	private UsuarioClient usuarioClient;
+	
+	private PessoaClient pessoaClient;
+	
 	private ProdutoClient produtoClient;
 
 	@Transactional
@@ -47,14 +57,28 @@ public class OrdemServiceImpl implements OrdemService {
 		return criarMensagemDTO("Ordem criada com sucesso, id: %s!", ordemResponse.getId());
 	}
 
-	public List<OrdemResponse> obterTodas() {
+	public List<OrdemDto> obterTodas() {
 		List<Ordem> ordens = ordemRepository.findAll();
-		return ordens.stream().map(ordemMapper::toResponse).collect(Collectors.toList());
+		List<OrdemDto> ordensDtos = new ArrayList<>();
+		for (Ordem ordem : ordens) {
+			OrdemDto ordemDto = obterPorId(ordem.getId());
+			ordensDtos.add(ordemDto);
+		}
+		return ordensDtos;
 	}
 
-	public OrdemResponse obterPorId(Long id) {
+	public OrdemDto obterPorId(Long id) {
 		Ordem ordem = obterOuFalhar(id);
-		return ordemMapper.toResponse(ordem);
+		UsuarioResponse usuarioResponse = usuarioClient.obterUsuarioPorId(ordem.getUsuarioId());
+		PessoaResponse pessoaResponse = pessoaClient.obterPessoa(ordem.getClienteId());
+		OrdemDto ordemDto = new OrdemDto();
+		BeanUtils.copyProperties(ordem, ordemDto, "clientId", "usuarioId");
+		ordemDto.setUsuario(usuarioResponse);
+		ordemDto.setCliente(pessoaResponse);
+		List<ItemProdutoResponse> items = new ArrayList<>();
+		ordemDto.setProdutos(items);
+		items.addAll(ordemMapper.toResponseList(ordem.getProdutos()));
+		return ordemDto;
 	}
 
 	@Transactional

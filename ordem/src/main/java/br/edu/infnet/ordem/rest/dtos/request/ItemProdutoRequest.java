@@ -2,10 +2,12 @@ package br.edu.infnet.ordem.rest.dtos.request;
 
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+@ApiModel(description = "Classe de representação de item de produto.")
 @Getter
 @Setter
 public class ItemProdutoRequest {

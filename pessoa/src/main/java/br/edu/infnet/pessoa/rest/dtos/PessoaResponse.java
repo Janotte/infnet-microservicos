@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel(description = "Classe de representação de uma nova pessoa.")
+@ApiModel(description = "Classe de representação de pessoa na resposta da aplicação..")
 @Getter
 @Setter
 public class PessoaResponse {

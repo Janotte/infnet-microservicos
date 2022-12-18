@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel(description = "Classe de representação da pessoa de atualização.")
+@ApiModel(description = "Classe de representação da pessoa de atualização da aplicação.")
 @Getter
 @Setter
 public class PessoaUpdate {
@@ -34,7 +34,7 @@ public class PessoaUpdate {
 	private String cpfCnpj;
 
 	@ApiModelProperty(notes = "Nome da pessoa.", example = "João da Silva Andrade", required = true, position = 3)
-	@NotBlank
+	@NotBlank(message = "O nome é necessário.")
 	@Size(max = 60)
 	private String nome;
 

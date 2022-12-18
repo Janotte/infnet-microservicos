@@ -11,10 +11,12 @@ import javax.validation.constraints.Size;
 
 import br.edu.infnet.ordem.domain.entities.LocalAtendimento;
 import br.edu.infnet.ordem.domain.entities.Situacao;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+@ApiModel(description = "Classe de representação de resposta de pessoa.")
 @Getter
 @Setter
 public class OrdemResponse {

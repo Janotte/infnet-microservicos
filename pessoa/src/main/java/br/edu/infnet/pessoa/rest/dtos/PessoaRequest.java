@@ -13,12 +13,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel(description = "Classe de representação de uma nova pessoa.")
+@ApiModel(description = "Classe de representação de criação de uma nova pessoa.")
 @Getter
 @Setter
 public class PessoaRequest {
 
-	@ApiModelProperty(notes = "Tipo de pessoa, física ou jurídica.", example = "FISICA", required = true, position = 0)
+	@ApiModelProperty(notes = "Tipo de pessoa, FISICA ou JURIDICA.", example = "FISICA", required = true, position = 0)
 	@Enumerated(EnumType.STRING)
 	private TipoPessoa tipoPessoa;
 
@@ -28,7 +28,7 @@ public class PessoaRequest {
 	private String cpfCnpj;
 
 	@ApiModelProperty(notes = "Nome da pessoa.", example = "João da Silva Andrade", required = true, position = 2)
-	@NotBlank
+	@NotBlank(message = "O nome é necessário.")
 	@Size(max = 60)
 	private String nome;
 

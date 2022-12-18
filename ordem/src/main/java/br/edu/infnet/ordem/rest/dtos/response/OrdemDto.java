@@ -1,4 +1,4 @@
-package br.edu.infnet.ordem.rest.dtos.request;
+package br.edu.infnet.ordem.rest.dtos.response;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -16,31 +16,27 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel(description = "Classe de representação de ordem de serviço.")
+@ApiModel(description = "Classe de representação de resposta de ordem de serviço.")
 @Getter
 @Setter
-public class OrdemUpdate {
+public class OrdemDto {
 
-	@ApiModelProperty(notes = "Identificador único da ordem de serviço.", example = "1", required = true, position = 0)
-	@NotNull(message = "O id é necessário.")
+	@ApiModelProperty(notes = "Identificador único da ordem de serviço.", example = "59871", position = 0)
 	private Long id;
-	
+
 	@ApiModelProperty(notes = "Situação da ordem de serviço, ABERTA, ANALISE, CONCLUIDA ou CANCELADA.", example = "ABERTA", required = true, position = 1)
-	@NotNull(message = "A situação é necessária.")
 	@Enumerated(EnumType.STRING)
 	private Situacao situacao;
 	
-	@ApiModelProperty(notes = "Local de atendimento pode ser Interno, externo ou remoto.", example = "REMOTO", required = true, position = 2)
-	@NotNull(message = "O local de atendimento é necessário.")
+	@ApiModelProperty(notes = "Local de atendimento pode ser Interno, externo ou remoto.", example = "REMOTO", position = 2)
+	@Enumerated(EnumType.STRING)
 	private LocalAtendimento localAtendimento;
 
-	@ApiModelProperty(notes = "Id do usuário.", example = "1", required = true, position = 3)
 	@NotNull(message = "O id do usuário é necessário.")
-	private Long usuarioId;
+	private UsuarioResponse usuario;
 
-	@ApiModelProperty(notes = "Id do cliente.", example = "1", required = true, position = 4)
 	@NotNull(message = "O id do cliente é necessário.")
-	private Long clienteId;
+	private PessoaResponse cliente;
 
 	@ApiModelProperty(notes = "Descrição do equipamento.", example = "Notebook Dell Inspiron 15", required = true, position = 5)
 	@NotBlank(message = "O objeto é necessário")
@@ -71,12 +67,14 @@ public class OrdemUpdate {
 	@ApiModelProperty(notes = "Descrição da solução para o problema apresentado.", example = "Backup, troca do HD por SSD e reinstalação do Windows", position = 11)
 	@Size(max = 250, message = "Pode conter no máximo 250 caracteres.")
 	private String solucao;
-	
+
 	@ApiModelProperty(notes = "Data de registro da ordem de serviço.", example = "15:30:18 12/12/2022", position = 12)
 	private OffsetDateTime dataRegistro;
 
 	@ApiModelProperty(notes = "Data da última atualização da ordem de serviço.", example = "17:42:35 12/12/2022", position = 13)
 	private OffsetDateTime dataAtualizacao;
 	
-	private List<ItemProdutoUpdate> produtos;
+	private List<ItemProdutoResponse> produtos;
+
+
 }
