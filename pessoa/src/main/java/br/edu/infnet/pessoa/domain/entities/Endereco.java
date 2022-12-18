@@ -3,30 +3,33 @@ package br.edu.infnet.pessoa.domain.entities;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Embeddable
 public class Endereco {
 
 	@Column(name = "endereco_cep", length = 12)
 	private String cep;
-	
+
 	@Column(name = "endereco_logradouro", length = 60)
 	private String logradouro;
-	
+
+	@ApiModelProperty(notes = "Número do local.", example = "88.888-000")
 	@Column(name = "endereco_numero", length = 8)
 	private String numero;
-	
+
 	@Column(name = "endereco_complemento", length = 20)
 	private String complemento;
-	
+
 	@Column(name = "endereco_bairro", length = 40)
 	private String bairro;
-	
+
 	@Column(name = "endereco_cidade", length = 40)
 	private String cidade;
-	
+
 	@Column(name = "endereco_uf", length = 2)
 	private String uf;
-		
+
 	public Endereco() {
 		super();
 	}

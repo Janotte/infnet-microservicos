@@ -11,11 +11,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Ordem {
 
@@ -36,6 +39,7 @@ public class Ordem {
 	@Column(name = "local_atendimento")
 	private LocalAtendimento localAtendimento;
 
+	@Enumerated(EnumType.STRING)
 	private Situacao situacao;
 
 	@Column(name = "usuario_id")
@@ -44,23 +48,29 @@ public class Ordem {
 	@Column(name = "pessoa_id")
 	private Long clienteId;
 
+	@Column(nullable = false, length = 60)
 	private String objeto;
 
-	private String marca;
-
+	@Column(length = 30)
 	private String serial;
 
+	@Column(length = 30)
 	private String setor;
 
+	@Column(length = 30)
 	private String utilizador;
 
+	@Column(length = 250)
 	private String solicitacao;
 
+	@Column(length = 250)
 	private String diagnostico;
 
+	@Column(length = 250)
 	private String solucao;
 
-	@OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ordem_id")
 	private List<ItemProduto> produtos;
 
 	@CreationTimestamp
@@ -70,28 +80,5 @@ public class Ordem {
 	@UpdateTimestamp
 	@Column(name = "data_atualizacao")
 	private OffsetDateTime dataAtualizacao;
-
-	public Ordem(Long id, LocalAtendimento localAtendimento, Situacao situacao, Long usuarioId, Long clienteId,
-			String objeto, String marca, String serial, String setor, String utilizador, String solicitacao,
-			String diagnostico, String solucao, List<ItemProduto> produtos, OffsetDateTime dataRegistro,
-			OffsetDateTime dataAtualizacao) {
-		super();
-		this.id = id;
-		this.localAtendimento = localAtendimento;
-		this.situacao = situacao;
-		this.usuarioId = usuarioId;
-		this.clienteId = clienteId;
-		this.objeto = objeto;
-		this.marca = marca;
-		this.serial = serial;
-		this.setor = setor;
-		this.utilizador = utilizador;
-		this.solicitacao = solicitacao;
-		this.diagnostico = diagnostico;
-		this.solucao = solucao;
-		this.produtos = produtos;
-		this.dataRegistro = dataRegistro;
-		this.dataAtualizacao = dataAtualizacao;
-	}
 
 }

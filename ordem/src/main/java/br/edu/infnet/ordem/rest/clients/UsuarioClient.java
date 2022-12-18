@@ -6,15 +6,15 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.edu.infnet.ordem.rest.dtos.UsuarioDTO;
+import br.edu.infnet.ordem.rest.dtos.response.UsuarioResponse;
 
 @FeignClient("usuario")
 public interface UsuarioClient {
 
 	@GetMapping("/usuarios")
-	List<UsuarioDTO> listarUsuarios();
+	List<UsuarioResponse> listarUsuarios();
 
 	@GetMapping("/usuarios/{id}")
-	UsuarioDTO obterUsuarioPorId(@PathVariable Long id);
+	UsuarioResponse obterUsuarioPorId(@PathVariable Long id);
 
 }

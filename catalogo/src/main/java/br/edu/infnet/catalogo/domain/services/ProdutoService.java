@@ -2,18 +2,21 @@ package br.edu.infnet.catalogo.domain.services;
 
 import java.util.List;
 
-import br.edu.infnet.catalogo.domain.entities.Produto;
+import br.edu.infnet.catalogo.rest.dtos.request.ProdutoRequest;
+import br.edu.infnet.catalogo.rest.dtos.request.ProdutoUpdate;
+import br.edu.infnet.catalogo.rest.dtos.response.MessageResponse;
+import br.edu.infnet.catalogo.rest.dtos.response.ProdutoResponse;
 
 public interface ProdutoService {
 
-	List<Produto> obterTodos();
+	List<ProdutoResponse> obterTodos();
 
-	Produto obterPorId(Long id);
+	ProdutoResponse obterPorId(Long id);
 
-	Produto salvar(Produto produto);
+	MessageResponse salvar(ProdutoRequest produtoRequest);
 
-	Produto atualizar(Long id, Produto produto);
+	MessageResponse atualizar(Long id, ProdutoUpdate produtoUpdate);
 
-	void excluir(Long id);
+	MessageResponse excluir(Long id);
 
 }

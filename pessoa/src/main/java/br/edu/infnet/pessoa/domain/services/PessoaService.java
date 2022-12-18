@@ -2,19 +2,26 @@ package br.edu.infnet.pessoa.domain.services;
 
 import java.util.List;
 
-import br.edu.infnet.pessoa.domain.entities.Pessoa;
+import br.edu.infnet.pessoa.rest.dtos.MessageResponse;
+import br.edu.infnet.pessoa.rest.dtos.PessoaRequest;
+import br.edu.infnet.pessoa.rest.dtos.PessoaResponse;
+import br.edu.infnet.pessoa.rest.dtos.PessoaUpdate;
 
 public interface PessoaService {
 
-	List<Pessoa> obterTodos();
+	List<PessoaResponse> obterTodas();
 
-	Pessoa obterPorId(Long id);
-	
-	Pessoa obterPorCpfCnpj(String cpfCnpj);
-	
-	Pessoa salvar(Pessoa usuario);
+	PessoaResponse obterPorId(Long id);
 
-	Pessoa atualizar(Long id, Pessoa pessoa);
+	PessoaResponse obterPorCpfCnpj(String cpfCnpj);
 
-    void excluir(Long id);
+	MessageResponse salvar(PessoaRequest pessoaRequest);
+
+	MessageResponse atualizar(Long id, PessoaUpdate pessoaUpdate);
+
+	MessageResponse excluir(Long id);
+
+	MessageResponse ativar(Long id);
+
+	MessageResponse inativar(Long id);
 }

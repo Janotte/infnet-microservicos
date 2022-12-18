@@ -4,5 +4,6 @@ public enum Situacao {
 
 	ABERTA,
 	ANALISE,
-	CONCLUIDA
+	CONCLUIDA,
+	CANCELADA
 }

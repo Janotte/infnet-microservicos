@@ -2,15 +2,18 @@ package br.edu.infnet.ordem.domain.services;
 
 import java.util.List;
 
-import br.edu.infnet.ordem.domain.entities.Ordem;
+import br.edu.infnet.ordem.rest.dtos.request.OrdemRequest;
+import br.edu.infnet.ordem.rest.dtos.request.OrdemUpdate;
+import br.edu.infnet.ordem.rest.dtos.response.MessageResponse;
+import br.edu.infnet.ordem.rest.dtos.response.OrdemResponse;
 
 public interface OrdemService {
 
-	List<Ordem> obterTodos();
+	List<OrdemResponse> obterTodas();
 
-	Ordem obterPorId(Long id);
+	OrdemResponse obterPorId(Long id);
 
-	Ordem salvar(Ordem ordem);
+	MessageResponse salvar(OrdemRequest ordemRequest);
 
-	Ordem atualizar(Long id, Ordem ordem);
+	MessageResponse atualizar(Long id, OrdemUpdate ordemUpdate);
 }

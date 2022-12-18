@@ -2,17 +2,20 @@ package br.edu.infnet.catalogo.domain.services;
 
 import java.util.List;
 
-import br.edu.infnet.catalogo.domain.entities.Categoria;
+import br.edu.infnet.catalogo.rest.dtos.request.CategoriaRequest;
+import br.edu.infnet.catalogo.rest.dtos.request.CategoriaUpdate;
+import br.edu.infnet.catalogo.rest.dtos.response.CategoriaResponse;
+import br.edu.infnet.catalogo.rest.dtos.response.MessageResponse;
 
 public interface CategoriaService {
-	
-	List<Categoria> obterTodos();
 
-	Categoria obterPorId(Long id);
+	List<CategoriaResponse> obterTodos();
 
-	Categoria salvar(Categoria categoria);
+	CategoriaResponse obterPorId(Long id);
 
-	Categoria atualizar(Long id, Categoria categoria);
+	MessageResponse salvar(CategoriaRequest categoriaRequest);
 
-	void excluir(Long id);
+	MessageResponse atualizar(Long id, CategoriaUpdate categoriaUpdate);
+
+	MessageResponse excluir(Long id);
 }

@@ -1,20 +1,27 @@
 package br.edu.infnet.usuario.domain.services;
 
-import br.edu.infnet.usuario.domain.entities.Usuario;
-
 import java.util.List;
+
+import br.edu.infnet.usuario.rest.dtos.MessageResponse;
+import br.edu.infnet.usuario.rest.dtos.UsuarioRequest;
+import br.edu.infnet.usuario.rest.dtos.UsuarioResponse;
+import br.edu.infnet.usuario.rest.dtos.UsuarioUpdate;
 
 public interface UsuarioService {
 
-	List<Usuario> obterTodos();
+	List<UsuarioResponse> obterTodos();
 
-	Usuario obterPorId(Long id);
+	UsuarioResponse obterPorId(Long id);
 	
-	Usuario obterPorEmail(String email);
+	UsuarioResponse obterPorEmail(String email);
 
-	Usuario salvar(Usuario usuario);
+	MessageResponse salvar(UsuarioRequest usuarioRequest);
 
-	Usuario atualizar(Long id, Usuario usuario);
+	MessageResponse atualizar(Long id, UsuarioUpdate usuarioUpdate);
 
-    void deletarPorId(Long id);
+	MessageResponse excluir(Long id);
+	
+	MessageResponse ativar(Long id);
+	
+	MessageResponse inativar(Long id);
 }
